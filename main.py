@@ -499,7 +499,7 @@ def handle_join_lottery(call):
         bot.answer_callback_query(call.id, "❌ Недостатньо умов для участі!")
         return
 
-user['lottery_participation'] = True
+users_data[user_id]['lottery_participation'] = True
 save_data()
 bot.answer_callback_query(call.id, "✅ Ти зареєстрований у розіграші!")
 try:
