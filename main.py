@@ -153,18 +153,26 @@ def daily_bonus(message):
         bot.send_message(message.chat.id, "<b>⚠️ Спершу підпишись на всі наші спонсорські канали!</b>", reply_markup=main_keyboard)
         return
 
-now = int(time.time())
+@bot.message_handler(func=lambda m: m.text == '🎁 Щоденний фарт')
+def daily_bonus(message):
+    user_id = message.from_user.id
+    if not check_subscriptions(user_id):
+        bot.send_message(message.chat.id, "<b>Спершу підпишись на всі наші спонсорські канали!</b>", reply_markup=main_keyboard)
+        return
+
+    now = int(time.time())
     last = users_data[user_id]['last_bonus']
     users_data[user_id]['last_active'] = now
-    
-if now - last < 86400:
-        bot.send_message(message.chat.id, "<b>⏳ Ти вже сьогодні отримав фарт! Завітай завтра 😉</b>", reply_markup=main_keyboard)
-else:
+
+    if now - last < 86400:
+        bot.send_message(message.chat.id, "<b>🕐 Ти вже сьогодні отримав фарт! Завітай завтра 😉</b>", reply_markup=main_keyboard)
+    else:
         bonus = random.randint(15, 100)
         users_data[user_id]['balance'] += bonus
         users_data[user_id]['last_bonus'] = now
         users_data[user_id]['streak'] += 1
         save_data()
+        bot.send_message(message.chat.id, f"<b>🎉 Плюс удачі {bonus} фартів! 🎉</b>\n\n", reply_markup=main_keyboard)
         bot.send_message(message.chat.id,
             f"<b>🔮 Пульс удачі б’ється рівно 👊</b>\n\n"
             f"<b>+{bonus} PulseCoins 💸</b>\n"
