@@ -123,7 +123,7 @@ def start_handler(message):
         }
         if ref_id and ref_id != user_id:
             users_data[user_id]['referral_from'] = ref_id
-              if ref_id in users_data:
+            if ref_id in users_data:
                 users_data[ref_id]['referrals'] += 1
                 try:
                     bot.send_message(ref_id, f"<b>🎉 У тебе новий реферал: {message.from_user.first_name} (@{message.from_user.username})</b>")
