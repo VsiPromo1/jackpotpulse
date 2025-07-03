@@ -154,7 +154,7 @@ def daily_bonus(message):
         return
 
 now = int(time.time())
-last = users_data[user_id]['last_bonus']
+    last = users_data[user_id]['last_bonus']
 users_data[user_id]['last_active'] = now
     
 if now - last < 86400:
