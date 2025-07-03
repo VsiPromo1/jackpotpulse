@@ -492,8 +492,8 @@ def handle_join_lottery(call):
         return
 
 user['lottery_participation'] = True
-    save_data()
-    bot.answer_callback_query(call.id, "✅ Ти зареєстрований у розіграші!")
+save_data()
+bot.answer_callback_query(call.id, "✅ Ти зареєстрований у розіграші!")
     try:
         user_info = bot.get_chat(user_id)
         uname = f"@{user_info.username}" if user_info.username else user_info.first_name
