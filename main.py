@@ -154,8 +154,8 @@ def daily_bonus(message):
         return
 
 now = int(time.time())
-    last = users_data[user_id]['last_bonus']
-    users_data[user_id]['last_active'] = now
+last = users_data[user_id]['last_bonus']
+users_data[user_id]['last_active'] = now
     
     if now - last < 86400:
         bot.send_message(message.chat.id, "<b>⏳ Ти вже сьогодні отримав фарт! Завітай завтра 😉</b>", reply_markup=main_keyboard)
