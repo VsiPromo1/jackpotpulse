@@ -498,7 +498,7 @@ try:
         user_info = bot.get_chat(user_id)
         uname = f"@{user_info.username}" if user_info.username else user_info.first_name
         bot.send_message(ADMIN_ID, f"🎟 Новий учасник розіграшу: <b>{uname}</b>, через {method}")
-    except:
+except:
         pass
 
 @bot.message_handler(commands=['runlottery'])
